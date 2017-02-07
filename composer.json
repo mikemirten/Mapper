@@ -1,0 +1,17 @@
+{
+    "name": "mikemirten/mapper",
+    "description": "Data to object mapper",
+    "type": "library",
+
+    "require": {},
+
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    },
+
+    "autoload": {
+          "psr-4": {
+              "": "src/"
+         }
+    }
+}
