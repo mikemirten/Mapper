@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 
 namespace Mikemirten\Component\Mapper\Accessor;
+use Mikemirten\Component\Mapper\Metadata\PropertyMetadataInterface;
 
 /**
  * Interface of property accessor
@@ -13,17 +14,18 @@ interface AccessorInterface
     /**
      * Set value to property of object
      *
-     * @param $object
-     * @param string $property
-     * @param $value
+     * @param mixed $object
+     * @param mixed $value
+     * @param PropertyMetadataInterface $property
      */
-    public function set($object, string $property, $value);
+    public function set($object, $value, PropertyMetadataInterface $property);
 
     /**
      * Get value from property of object
      *
-     * @param $object
-     * @param string $property
+     * @param  mixed $object
+     * @param  PropertyMetadataInterface $property
+     * @return mixed
      */
-    public function get($object, string $property);
+    public function get($object, PropertyMetadataInterface $property);
 }

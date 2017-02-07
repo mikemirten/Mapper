@@ -3,8 +3,6 @@ declare(strict_types = 1);
 
 namespace Mikemirten\Component\Mapper\Metadata;
 
-use Doctrine\Common\Persistence\Mapping\ClassMetadata;
-
 /**
  * Interface of metadata provider
  *
@@ -16,7 +14,7 @@ interface ProviderInterface
      * Get metadata for class
      *
      * @param  \ReflectionClass $reflection
-     * @return ClassMetadata
+     * @return ClassMetadataInterface
      */
-    public function getClassMetadata(\ReflectionClass $reflection): ClassMetadata;
+    public function getClassMetadata(\ReflectionClass $reflection): ClassMetadataInterface;
 }
