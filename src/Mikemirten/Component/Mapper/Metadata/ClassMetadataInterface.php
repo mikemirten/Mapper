@@ -11,12 +11,19 @@ namespace Mikemirten\Component\Mapper\Metadata;
 interface ClassMetadataInterface
 {
     /**
+     * Get name of class
+     *
+     * @return string
+     */
+    public function getName(): string;
+
+    /**
      * Get property metadata
      *
      * @param  string $name
-     * @return PropertyMetadata
+     * @return PropertyMetadataInterface
      */
-    public function getPropertyMetadata(string $name): PropertyMetadata;
+    public function getPropertyMetadata(string $name): PropertyMetadataInterface;
 
     /**
      * Has metadata for property ?
@@ -25,4 +32,11 @@ interface ClassMetadataInterface
      * @return bool
      */
     public function hasPropertyMetadata(string $name): bool;
+
+    /**
+     * Get metadata of all properties
+     *
+     * @return PropertyMetadataInterface[]
+     */
+    public function getPropertiesMetadata(): array;
 }
