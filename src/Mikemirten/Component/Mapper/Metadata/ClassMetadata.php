@@ -24,7 +24,7 @@ class ClassMetadata implements ClassMetadataInterface
      *
      * @var PropertyMetadataInterface[]
      */
-    private $properties;
+    private $properties = [];
 
     /**
      * ClassMetadata constructor.
