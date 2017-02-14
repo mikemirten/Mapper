@@ -81,7 +81,7 @@ class SimplePropertiesProvider implements ProviderInterface
         }
 
         if (preg_match('~@var\s+\\\?([a-z0-9]+)~i', $comment, $matches)) {
-            $property;
+            $property->setType($matches[1]);
         }
 
         return $property;
