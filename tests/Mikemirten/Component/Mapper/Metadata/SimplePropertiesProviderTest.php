@@ -3,23 +3,22 @@ declare(strict_types = 1);
 
 namespace Mikemirten\Component\Mapper\Metadata;
 
+use Mikemirten\Fixture\ExtendedPropertyObject;
+use Mikemirten\Fixture\ObjectWithTrait;
+use Mikemirten\Fixture\PropertyObject;
 use PHPUnit\Framework\TestCase;
 
 class SimplePropertiesProviderTest extends TestCase
 {
     public function testBasics()
     {
-        $object = new class
-        {
-            private $firstName;
-        };
-
+        $object   = new PropertyObject();
         $provider = new SimplePropertiesProvider();
         $metadata = $provider->getClassMetadata(new \ReflectionClass($object));
 
-        $this->assertTrue($metadata->hasPropertyMetadata('firstName'));
+        $this->assertTrue($metadata->hasPropertyMetadata('testProperty'));
         $this->assertFalse($metadata->hasPropertyMetadata('middleName'));
-        $this->assertInstanceOf(PropertyMetadata::class, $metadata->getPropertyMetadata('firstName'));
+        $this->assertInstanceOf(PropertyMetadata::class, $metadata->getPropertyMetadata('testProperty'));
     }
 
     /**
@@ -27,14 +26,38 @@ class SimplePropertiesProviderTest extends TestCase
      */
     public function testNotFound()
     {
-        $object = new class
-        {
-            private $firstName;
-        };
-
+        $object   = new PropertyObject();
         $provider = new SimplePropertiesProvider();
         $metadata = $provider->getClassMetadata(new \ReflectionClass($object));
 
         $metadata->getPropertyMetadata('lastName');
+    }
+
+    public function testExtended()
+    {
+        $object = new ExtendedPropertyObject();
+
+        $provider = new SimplePropertiesProvider();
+        $metadata = $provider->getClassMetadata(new \ReflectionClass($object));
+
+        $this->assertTrue($metadata->hasPropertyMetadata('testProperty'));
+        $this->assertTrue($metadata->hasPropertyMetadata('extendedTestProperty'));
+
+        $this->assertInstanceOf(PropertyMetadata::class, $metadata->getPropertyMetadata('testProperty'));
+        $this->assertInstanceOf(PropertyMetadata::class, $metadata->getPropertyMetadata('extendedTestProperty'));
+    }
+
+    public function testTrait()
+    {
+        $object = new ObjectWithTrait();
+
+        $provider = new SimplePropertiesProvider();
+        $metadata = $provider->getClassMetadata(new \ReflectionClass($object));
+
+        $this->assertTrue($metadata->hasPropertyMetadata('testProperty'));
+        $this->assertTrue($metadata->hasPropertyMetadata('extendedTestProperty'));
+
+        $this->assertInstanceOf(PropertyMetadata::class, $metadata->getPropertyMetadata('testProperty'));
+        $this->assertInstanceOf(PropertyMetadata::class, $metadata->getPropertyMetadata('extendedTestProperty'));
     }
 }

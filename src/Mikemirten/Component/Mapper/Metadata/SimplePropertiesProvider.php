@@ -46,6 +46,21 @@ class SimplePropertiesProvider implements ProviderInterface
             $metadata->addPropertyMetadata($this->createPropertyMetadata($property));
         }
 
+        $parent = $reflection->getParentClass();
+
+        if ($parent !== false) {
+            $parentMetadata = $this->createClassMetadata($parent);
+
+            $metadata->merge($parentMetadata);
+        }
+
+        foreach ($reflection->getTraits() as $trait)
+        {
+            $traitMetadata = $this->createClassMetadata($trait);
+
+            $metadata->merge($traitMetadata);
+        }
+
         return $metadata;
     }
 

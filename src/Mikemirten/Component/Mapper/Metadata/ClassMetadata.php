@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 
 namespace Mikemirten\Component\Mapper\Metadata;
+
 use Mikemirten\Component\Mapper\Exception\PropertyMetadataOverrideException;
 use Mikemirten\Component\Mapper\Exception\PropertyNotFoundException;
 
@@ -87,5 +88,22 @@ class ClassMetadata implements ClassMetadataInterface
     public function getPropertiesMetadata(): array
     {
         return $this->properties;
+    }
+
+    /**
+     * Merge a metadata
+     *
+     * @param ClassMetadataInterface $metadata
+     */
+    public function merge(ClassMetadataInterface $metadata)
+    {
+        foreach ($metadata->getPropertiesMetadata() as $propertyMetadata)
+        {
+            $name = $propertyMetadata->getName();
+
+            if (! isset($this->properties[$name])) {
+                $this->properties[$name] = $propertyMetadata;
+            }
+        }
     }
 }
