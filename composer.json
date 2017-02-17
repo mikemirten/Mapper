@@ -11,13 +11,13 @@
 
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "Mikemirten\\Component\\Mapper\\": "src/"
         }
     },
 
     "autoload-dev": {
         "psr-4": {
-            "": "tests/"
+            "Mikemirten\\Component\\Mapper\\": "tests/"
         }
     }
 }

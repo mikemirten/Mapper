@@ -1,6 +1,6 @@
 <?php
 
-namespace Mikemirten\Fixture;
+namespace Mikemirten\Component\Mapper\Fixture;
 
 class ObjectWithTrait
 {

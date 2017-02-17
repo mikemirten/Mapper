@@ -3,9 +3,9 @@ declare(strict_types = 1);
 
 namespace Mikemirten\Component\Mapper\Metadata;
 
-use Mikemirten\Fixture\ExtendedPropertyObject;
-use Mikemirten\Fixture\ObjectWithTrait;
-use Mikemirten\Fixture\PropertyObject;
+use Mikemirten\Component\Mapper\Fixture\ExtendedPropertyObject;
+use Mikemirten\Component\Mapper\Fixture\ObjectWithTrait;
+use Mikemirten\Component\Mapper\Fixture\PropertyObject;
 use PHPUnit\Framework\TestCase;
 
 class SimplePropertiesProviderTest extends TestCase

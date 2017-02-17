@@ -1,8 +1,8 @@
 <?php
 
-namespace Mikemirten\Fixture;
+namespace Mikemirten\Component\Mapper\Fixture;
 
-class PropertyObject
+trait PropertyTrait
 {
     /**
      * @var string
